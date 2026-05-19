@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import Header from "@/components/shared/Header";
 import TransformationForm from "@/components/shared/TransformationForm";
 import { transformationTypes } from "@/constants";
-import { getUserById } from "@/lib/actions/user.actions";
+import { getOrCreateUser } from "@/lib/actions/user.actions";
 import { getImageById } from "@/lib/actions/image.actions";
 
 const Page = async ({ params: { id } }: SearchParamProps) => {
@@ -12,7 +12,7 @@ const Page = async ({ params: { id } }: SearchParamProps) => {
 
   if (!userId) redirect("/sign-in");
 
-  const user = await getUserById(userId);
+  const user = await getOrCreateUser(userId);
   const image = await getImageById(id);
 
   const transformation =

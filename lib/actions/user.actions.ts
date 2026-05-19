@@ -1,14 +1,47 @@
-"use server" //https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations refs
-//aleternative of api routes
+"use server"
 
-// Used as serverless architecture so that we can get each connections separately
 import { revalidatePath } from "next/cache";
+import { currentUser } from "@clerk/nextjs";
 
 import User from "../database/models/user.model";
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
 
 //simple actions for the user as user --> Create, update, read, delete
+
+// GET OR CREATE — handles race condition where webhook hasn't fired yet
+export async function getOrCreateUser(clerkId: string) {
+  try {
+    await connectToDatabase();
+
+    const existing = await User.findOne({ clerkId });
+    if (existing) return JSON.parse(JSON.stringify(existing));
+
+    // Webhook hasn't created the user yet — sync directly from Clerk
+    const clerkUser = await currentUser();
+    if (!clerkUser) throw new Error("Unauthorized");
+
+    // Atomic upsert — safe even if webhook fires concurrently
+    const user = await User.findOneAndUpdate(
+      { clerkId },
+      {
+        $setOnInsert: {
+          clerkId,
+          email: clerkUser.emailAddresses[0]?.emailAddress ?? '',
+          username: clerkUser.username ?? clerkId,
+          firstName: clerkUser.firstName ?? '',
+          lastName: clerkUser.lastName ?? '',
+          photo: clerkUser.imageUrl,
+        },
+      },
+      { upsert: true, new: true }
+    );
+
+    return JSON.parse(JSON.stringify(user));
+  } catch (error) {
+    handleError(error);
+  }
+}
 
 // CREATE
 export async function createUser(user: CreateUserParams) {
