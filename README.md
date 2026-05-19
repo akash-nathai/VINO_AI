@@ -2,6 +2,10 @@
 
 Welcome to VINO AI, a powerful image transformation platform built with Next.js, TypeScript, MongoDB, Clerk, Stripe, Shadcn, and TailwindCSS.
 
+## 🚀 Deploy
+
+[Click here to visit](https://vino-ai.vercel.app/)
+
 ## 🌐 Website UI
 
 ![vinoUI](https://github.com/Hero777-tech/VINO_AI/assets/68598911/e478aed3-ad69-49aa-ba99-efb5c4194b79)
@@ -68,9 +72,7 @@ To learn more about VINO AI and its features, feel free to explore the project's
 [error](https://stackoverflow.com/questions/75809784/not-found-users) </br>
 [user integration](https://clerk.com/docs/quickstarts/nextjs) </br>
 
-## 🚀 Deploy
 
-[Click here to visit](https://vino-ai.vercel.app/)
 
 Your feedback and contributions to VINO AI are always welcome!
 
