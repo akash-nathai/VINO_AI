@@ -1,7 +1,9 @@
 /* eslint-disable camelcase */
 import { createTransaction } from "@/lib/actions/transaction.action";
 import { NextResponse } from "next/server";
-import stripe from "stripe";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(request: Request) {
   const body = await request.text();

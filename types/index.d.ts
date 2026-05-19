@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-#check
 // ====== USER PARAMS
 declare type CreateUserParams = {
     clerkId: string;

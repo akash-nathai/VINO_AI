@@ -15,6 +15,7 @@ const IBMPlex = IBM_Plex_Sans({
 export const metadata: Metadata = {
   title: "VINO-AI",
   description: "Just imagine, we will structure the reality.",
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
       variables: {colorPrimary: '#624cf8'}
     }}>
       <html lang="en">
-        <body className={cn("font-IBMPlex antialised, IBMPlex.variable")}>
+        <body className={cn("font-IBMPlex antialiased", IBMPlex.variable)}>
           {children}
           <Analytics />
           <SpeedInsights />

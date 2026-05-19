@@ -264,7 +264,7 @@ const TransformationForm = ({ data = null, action, userId, type, creditBalance, 
           <CustomField
             control={form.control}
             name="publicId"
-            className="size-full flex flex-xol"
+            className="size-full flex flex-col"
             render={({ field }) => (
               <MediaUploader
                 onValueChange={field.onChange}
