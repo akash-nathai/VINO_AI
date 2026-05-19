@@ -5,3 +5,5 @@ This is a updates for self auditing of project work done
 ++ next working for homepage, db setup and sidebar intregation
 ===> march 22 2024 [ -- setup sidebar, optimize for mobile and error fixed for double user logs, database intrigation using MongoDB]
 ++ next woking for home page webhooks etc
+
+optimize this needed
